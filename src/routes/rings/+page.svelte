@@ -7,6 +7,11 @@
 	const images = [
 		{
 			alt: 'erbology',
+			src: '/images/gabriela.png',
+			name: 'gabrielavitrina.gltf'
+		},
+		{
+			alt: 'erbology',
 			src: '/images/adri.png',
 			name: 'adri6gr.stl'
 		},
@@ -37,7 +42,9 @@
 		<button
 			on:click={() => {
 				showmodal = true;
+
 				stlToOpen = `${PUBLIC_URL_API}/public/${item.name}`;
+
 				modaltitle = item.name.replace('.stl', '');
 			}}
 		>

@@ -1,9 +1,10 @@
 <script lang="ts">
 	import { Canvas, T, useTask } from '@threlte/core';
 	import { STLLoader } from 'three/addons/loaders/STLLoader';
+	import { GLTFLoader } from 'three/addons/loaders/GLTFLoader';
 	import { useLoader } from '@threlte/core';
 
-	import { ContactShadows, Float, Grid, OrbitControls } from '@threlte/extras';
+	import { ContactShadows, Float, Grid, OrbitControls, useGltf } from '@threlte/extras';
 	import { Spinner } from 'flowbite-svelte';
 
 	export let filepath: string;
@@ -14,7 +15,9 @@
 		z: number;
 	};
 
-	const stl = useLoader(STLLoader).load(filepath);
+	const isGltf = filepath.includes('gltf');
+
+	const loader = isGltf ? useGltf().load(filepath) : useLoader(STLLoader).load(filepath);
 
 	let rotation = 0;
 	useTask((delta) => {
@@ -26,23 +29,26 @@
 
 <T.DirectionalLight intensity={5} position={[lightPosition.x, lightPosition.y, lightPosition.z]} />
 <T.AmbientLight intensity={0.5} />
-<T.PerspectiveCamera
-	makeDefault
-	position={[-10, 10, 40]}
-	fov={15}
-	on:create={({ ref }) => {
-		ref.lookAt(0, 1, 0);
-	}}
->
+<T.PerspectiveCamera makeDefault position={[-10, 10, 40]} fov={15} on:create={({ ref }) => {}}>
 	<OrbitControls autoRotate enableZoom={true} autoRotateSpeed={0.9} />
 </T.PerspectiveCamera>
-{#await stl}
-	<T.Mesh rotation.y={rotation}>
-		<T.BoxGeometry />
-		<T.MeshBasicMaterial color="blue" />
-	</T.Mesh>
-{:then geometry}
-	<T.Mesh geometry={geometry.center()} scale={[0.5, 0.5, 0.5]} position={point}>
-		<T.MeshPhongMaterial color="#00613F" />
-	</T.Mesh>
-{/await}
+
+{#if $loader && isGltf}
+	<T is={$loader.scene} />
+{:else if !isGltf}
+	{#await loader}
+		<T.Mesh rotation.y={rotation}>
+			<T.BoxGeometry />
+			<T.MeshBasicMaterial color="blue" />
+		</T.Mesh>
+	{:then geometry}
+		<T.Mesh geometry={geometry.center()} scale={[0.5, 0.5, 0.5]} position={point}>
+			<T.MeshPhongMaterial color="#00613F" />
+		</T.Mesh>
+	{:catch e}
+		<T.Mesh rotation.y={rotation}>
+			<T.BoxGeometry />
+			<T.MeshBasicMaterial color="blue" />
+		</T.Mesh>
+	{/await}
+{/if}
