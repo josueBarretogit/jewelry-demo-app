@@ -17,7 +17,9 @@
 
 	const isGltf = filepath.includes('gltf');
 
-	const loader = isGltf ? useGltf().load(filepath) : useLoader(STLLoader).load(filepath);
+	const loader = isGltf
+		? useGltf(filepath, { useDraco: true })
+		: useLoader(STLLoader).load(filepath);
 
 	let rotation = 0;
 	useTask((delta) => {
