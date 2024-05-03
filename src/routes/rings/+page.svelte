@@ -2,36 +2,28 @@
 	import Canvas3D from '$lib/components/Canvas3D.svelte';
 	import { Gallery } from 'flowbite-svelte';
 	import { Modal, Button } from 'flowbite-svelte';
+	import { PUBLIC_URL_API } from '$env/static/public';
+
 	const images = [
 		{
 			alt: 'erbology',
-			src: 'https://flowbite.s3.amazonaws.com/docs/gallery/square/image.jpg',
+			src: '/images/adri.png',
 			name: 'adri6gr.stl'
 		},
 		{
 			alt: 'shoes',
-			src: 'https://flowbite.s3.amazonaws.com/docs/gallery/square/image-1.jpg',
+			src: '/images/ana.png',
 			name: 'ana enviar.stl'
 		},
 		{
 			alt: 'small bag',
-			src: 'https://flowbite.s3.amazonaws.com/docs/gallery/square/image-2.jpg',
+			src: '/images/pantera.png',
 			name: 'pantera.stl'
 		},
 		{
 			alt: 'plants',
-			src: 'https://flowbite.s3.amazonaws.com/docs/gallery/square/image-3.jpg',
+			src: '/images/sandra.png',
 			name: 'sandra6gr.stl'
-		},
-		{
-			alt: 'watch',
-			src: 'https://flowbite.s3.amazonaws.com/docs/gallery/square/image-4.jpg',
-			name: 'anaisabel18.4gr.stl'
-		},
-		{
-			alt: 'shoe',
-			src: 'https://flowbite.s3.amazonaws.com/docs/gallery/square/image-5.,jpg ',
-			name: 'pantera.stl'
 		}
 	];
 
@@ -40,12 +32,12 @@
 	let modaltitle = '';
 </script>
 
-<Gallery items={images} class="grid-cols-2 gap-4 md:grid-cols-3" let:item>
+<Gallery items={images} class="grid-cols-2 gap-4 p-2 md:grid-cols-3" let:item>
 	<div>
 		<button
 			on:click={() => {
 				showmodal = true;
-				stlToOpen = `http://localhost:4000/public/${item.name}`;
+				stlToOpen = `${PUBLIC_URL_API}/public/${item.name}`;
 				modaltitle = item.name.replace('.stl', '');
 			}}
 		>
@@ -54,7 +46,7 @@
 	</div>
 </Gallery>
 
-<Modal title={modaltitle} bind:open={showmodal} autoclose>
+<Modal title={modaltitle} size="lg" bind:open={showmodal} autoclose>
 	<div class=" modelContainer">
 		<Canvas3D filepath={stlToOpen} />
 	</div></Modal
@@ -65,7 +57,6 @@
 		display: flex;
 
 		position: relative;
-		background-color: lightblue;
 		justify-content: center;
 		width: 100%;
 		height: 70vh;
