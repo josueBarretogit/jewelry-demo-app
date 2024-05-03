@@ -56,6 +56,7 @@
 	.modelContainer {
 		display: flex;
 
+		background-color: lightcyan;
 		position: relative;
 		justify-content: center;
 		width: 100%;

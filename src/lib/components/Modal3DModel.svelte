@@ -34,7 +34,7 @@
 		ref.lookAt(0, 1, 0);
 	}}
 >
-	<OrbitControls autoRotate enableZoom={true} autoRotateSpeed={0.5} />
+	<OrbitControls autoRotate enableZoom={true} autoRotateSpeed={0.9} />
 </T.PerspectiveCamera>
 {#await stl}
 	<T.Mesh rotation.y={rotation}>

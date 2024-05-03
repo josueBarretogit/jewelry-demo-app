@@ -16,10 +16,14 @@
 </Canvas>
 
 <div class="controls">
-	<span>Subir luz</span>
-	<input type="range" bind:value={lightPosition.y} />
-	<span>Mover luz</span>
-	<input type="range" bind:value={lightPosition.x} />
+	<div>
+		<span>Move luz verticalmente</span>
+		<input type="range" bind:value={lightPosition.y} min="-50" max="50" step="0.5" />
+	</div>
+	<div>
+		<span>Mover luz horizontalmente</span>
+		<input type="range" bind:value={lightPosition.x} min="-50" max="50" step="0.5" />
+	</div>
 </div>
 
 <style>
