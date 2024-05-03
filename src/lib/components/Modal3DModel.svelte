@@ -34,7 +34,14 @@
 </T.PerspectiveCamera>
 
 {#if $loader && isGltf}
-	<T is={$loader.scene} />
+	{console.log($loader.nodes.mesh_0.geometry)}
+	<T.Mesh
+		geometry={$loader.nodes.mesh_0.geometry.center()}
+		scale={[0.5, 0.5, 0.5]}
+		position={point}
+	>
+		<T.MeshPhongMaterial color="#00613F" />
+	</T.Mesh>
 {:else if !isGltf}
 	{#await loader}
 		<T.Mesh rotation.y={rotation}>
