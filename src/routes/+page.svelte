@@ -5,7 +5,7 @@
 	import { Button, Modal } from 'flowbite-svelte';
 	let defaultModal = false;
 
-	const filepath = `${PUBLIC_URL_API}/public/gabrielavitrina.gltf`;
+	const filepath = `${PUBLIC_URL_API}/public/gabrielavitrina.glb`;
 	const lightPosition = {
 		x: 1,
 		y: 1,

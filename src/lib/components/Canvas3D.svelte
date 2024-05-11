@@ -11,7 +11,7 @@
 	};
 </script>
 
-<Canvas>
+<Canvas renderMode="on-demand">
 	<Modal3DModel {filepath} {lightPosition} />
 </Canvas>
 

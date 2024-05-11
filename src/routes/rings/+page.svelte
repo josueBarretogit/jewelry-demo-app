@@ -8,7 +8,7 @@
 		{
 			alt: 'erbology',
 			src: '/images/gabriela.png',
-			name: 'gabrielavitrina.gltf'
+			name: 'gabrielavitrina.glb'
 		},
 		{
 			alt: 'erbology',
@@ -18,7 +18,7 @@
 		{
 			alt: 'shoes',
 			src: '/images/ana.png',
-			name: 'ana enviar.stl'
+			name: 'ana enviar.glb'
 		},
 		{
 			alt: 'small bag',

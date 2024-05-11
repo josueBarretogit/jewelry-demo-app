@@ -15,7 +15,7 @@
 		z: number;
 	};
 
-	const isGltf = filepath.includes('gltf');
+	const isGltf = filepath.includes('gltf') || filepath.includes("glb");
 
 	const loader = isGltf
 		? useGltf(filepath, { useDraco: true })
