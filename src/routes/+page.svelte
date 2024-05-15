@@ -5,12 +5,14 @@
 	import { Button, Modal } from 'flowbite-svelte';
 	let defaultModal = false;
 
-	const filepath = `${PUBLIC_URL_API}/public/gabrielavitrina.glb`;
+	const filepath = `/api/models/?modelName=gabrielavitrina.glb`;
 	const lightPosition = {
 		x: 1,
 		y: 1,
 		z: 1
 	};
+
+
 </script>
 
 <div class=" flex w-full justify-center bg-black" style="height: 50vh;">
@@ -18,6 +20,7 @@
 		<Modal3DModel {filepath} {lightPosition} />
 	</Canvas>
 </div>
+
 
 <style>
 	:global(body) {

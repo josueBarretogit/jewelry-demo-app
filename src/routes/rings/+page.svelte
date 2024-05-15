@@ -2,7 +2,6 @@
 	import Canvas3D from '$lib/components/Canvas3D.svelte';
 	import { Gallery } from 'flowbite-svelte';
 	import { Modal, Button } from 'flowbite-svelte';
-	import { PUBLIC_URL_API } from '$env/static/public';
 
 	const images = [
 		{
@@ -13,7 +12,7 @@
 		{
 			alt: 'erbology',
 			src: '/images/adri.png',
-			name: 'adri6gr.stl'
+			name: 'adri6gr.glb'
 		},
 		{
 			alt: 'shoes',
@@ -23,12 +22,17 @@
 		{
 			alt: 'small bag',
 			src: '/images/pantera.png',
-			name: 'pantera.stl'
+			name: 'pantera.glb'
 		},
 		{
 			alt: 'plants',
 			src: '/images/sandra.png',
-			name: 'sandra6gr.stl'
+			name: 'sandra6gr.glb'
+		},
+		{
+			alt: 'plants',
+			src: '/images/sandra.png',
+			name: 'pruebapequeno2.stl'
 		}
 	];
 
@@ -43,7 +47,7 @@
 			on:click={() => {
 				showmodal = true;
 
-				stlToOpen = `${PUBLIC_URL_API}/public/${item.name}`;
+				stlToOpen = `api/models/?modelName=${item.name}`;
 
 				modaltitle = item.name.replace('.stl', '');
 			}}
@@ -53,7 +57,7 @@
 	</div>
 </Gallery>
 
-<Modal title={modaltitle} size="lg" bind:open={showmodal} autoclose>
+<Modal title={modaltitle} size="lg" bind:open={showmodal}>
 	<div class=" modelContainer">
 		<Canvas3D filepath={stlToOpen} />
 	</div></Modal
