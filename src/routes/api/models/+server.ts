@@ -2,7 +2,8 @@ import { PRIVATE_API_TOKEN, PRIVATE_URL_API } from "$env/static/private";
 import type { RequestHandler } from "@sveltejs/kit";
 export const GET: RequestHandler = async ({ url }) => {
 
-  if (url.hostname != "localhost") {
+
+  if (url.origin != "https://localhost:5173") {
     return new Response("unauthorized")
   }
 
@@ -24,5 +25,10 @@ export const GET: RequestHandler = async ({ url }) => {
 
   const data = await modelData.blob()
   
-  return new Response(data)
+  return new Response(data,{
+    headers : {
+      'Access-Control-Allow-Origin':  "https://localhost:5173"
+
+    }
+  })
 }

@@ -47,7 +47,6 @@
 		</T.Mesh>
 {:else if $loader && isGltf}
    <!-- else if content here -->
-  {console.log($loader.nodes)}
 		<T.Mesh
 			geometry={$loader.nodes.camilareduced.geometry.center()}
 			scale={[1.5, 1.5, 1.5]}
@@ -55,6 +54,8 @@
 		>
 			<T.MeshPhysicalMaterial metalness={1} color="#00613F" />
 		</T.Mesh>
+
+
 {:else if !isGltf}
 	{#await loader}
 		<T.Mesh rotation.y={rotation}>

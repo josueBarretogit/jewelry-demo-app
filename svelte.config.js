@@ -16,6 +16,9 @@ const config = {
     edge: false ,
     split : false
     }),
+    csrf : {
+      checkOrigin : true
+    }
 	}
 };
 

@@ -1,84 +1,71 @@
 <script lang="ts">
 	import Canvas3D from '$lib/components/Canvas3D.svelte';
-	import { Gallery } from 'flowbite-svelte';
+	import { type Catalog } from '$lib/interfaces/interfaces';
+	import { Gallery, Spinner, type ImgType } from 'flowbite-svelte';
 	import { Modal, Button, Tabs, TabItem } from 'flowbite-svelte';
 
-	const images = [
-		{
-			alt: 'erbology',
-			src: 'camila.png',
-			name: 'camilaafter.stl'
-		},
-		{
-			alt: 'erbology',
-			src: 'jfpd.png',
-			name: 'jfpdstl.stl'
-		},
-		{
-			alt: 'shoes',
-			src: 'luisa.png',
-			name: 'luisaafter.stl'
-		},
-		{
-			alt: 'a ring',
-			src: 'sara.png',
-			name: 'saraafter.stl'
-		},
-		{
-			alt: 'plants',
-			src: 'saracorazon.png',
-			name: 'saracorazonafter.stl'
-		},
-		{
-			alt: 'plants',
-			src: 'david.png',
-			name: 'pruebapequeno2.stl'
-		}
-	];
+	async function getCatalogs(): Promise<Catalog> {
+		const reponse = await fetch('/data/content.json');
+		return reponse.json();
+	}
+
+	function openModal(item: ImgType) {
+		showmodal = true;
+		stlToOpen = `api/models/?modelName=${item.name}`;
+		modaltitle = item.name.replace('.stl', '');
+	}
+
+	const catalogs: Promise<Catalog> = getCatalogs();
 
 	let showmodal = false;
 	let stlToOpen = '';
 	let modaltitle = '';
 </script>
 
-<div class="">
-	<Tabs tabStyle="full">
-		<TabItem open title="Anillos de nombre">
-			<div class="flex justify-center">
-				<Gallery items={images} class="grid-cols-2 gap-3 p-2 md:grid-cols-3" let:item>
+{#await catalogs}
+	<div class="flex justify-center">
+		<Spinner />
+	</div>
+{:then catalog}
+	<div class="">
+		<Tabs
+			tabStyle="full"
+			contentClass="flex justify-center"
+			defaultClass="flex justify-center text-lg"
+		>
+			<TabItem open title="Anillos de nombre">
+				<Gallery
+					items={catalog.RingNames.catalog}
+					class="grid-cols-2 gap-3 p-2 md:grid-cols-3"
+					let:item
+				>
 					<div>
-						<button
-							on:click={() => {
-								showmodal = true;
-								stlToOpen = `api/models/?modelName=${item.name}`;
-								modaltitle = item.name.replace('.stl', '');
-							}}
-						>
+						<button on:click={openModal(item)}>
 							<img src={`/images/${item.src}`} alt={item.alt} />
 						</button>
 					</div>
 				</Gallery>
-			</div>
-		</TabItem>
-		<TabItem title="Coronas">
-			<div class="flex justify-center">
-				<Gallery items={images} class="grid-cols-2 gap-3 p-2 md:grid-cols-3" let:item>
+			</TabItem>
+			<TabItem title="Manoplas">
+				<Gallery
+					items={catalog.Manoplas.catalog}
+					class="grid-cols-2 gap-3 p-2 md:grid-cols-3"
+					let:item
+				>
 					<div>
-						<button
-							on:click={() => {
-								showmodal = true;
-								stlToOpen = `api/models/?modelName=${item.name}`;
-								modaltitle = item.name.replace('.stl', '');
-							}}
-						>
+						<button on:click={openModal(item)}>
 							<img src={`/images/${item.src}`} alt={item.alt} />
 						</button>
 					</div>
 				</Gallery>
-			</div>
-		</TabItem>
-	</Tabs>
-</div>
+			</TabItem>
+		</Tabs>
+	</div>
+{:catch error}
+	<div class="flex justify-center">
+		<p>an error ocurred</p>
+	</div>
+{/await}
 
 <Modal title={modaltitle} size="lg" bind:open={showmodal}>
 	<div class=" modelContainer">

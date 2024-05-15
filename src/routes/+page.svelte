@@ -1,5 +1,4 @@
 <script lang="ts">
-	import { PUBLIC_URL_API } from '$env/static/public';
 	import Modal3DModel from '$lib/components/Modal3DModel.svelte';
 	import { Canvas } from '@threlte/core';
 	import { Button, Modal } from 'flowbite-svelte';
