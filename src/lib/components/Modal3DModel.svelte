@@ -4,8 +4,6 @@
 	import { GLTFLoader } from 'three/addons/loaders/GLTFLoader';
 	import { useLoader } from '@threlte/core';
 
-	import { OBJLoader } from 'three/addons/loaders/OBJLoader';
-
 	import { ContactShadows, Float, Grid, OrbitControls, useGltf } from '@threlte/extras';
 
 	export let filepath: string;
@@ -42,21 +40,21 @@
 	<OrbitControls autoRotate enableZoom={true} autoRotateSpeed={1.2} />
 </T.PerspectiveCamera>
 
-{#if $loader && isGltf}
-	{#await $loader}
+{#if !$loader && isGltf}
 		<T.Mesh rotation.y={rotation}>
 			<T.BoxGeometry />
 			<T.MeshBasicMaterial color="blue" />
 		</T.Mesh>
-	{:then value}
+{:else if $loader && isGltf}
+   <!-- else if content here -->
+  {console.log($loader.nodes)}
 		<T.Mesh
-			geometry={value.nodes.mesh_0.geometry.center()}
+			geometry={$loader.nodes.camilareduced.geometry.center()}
 			scale={[1.5, 1.5, 1.5]}
 			position={point}
 		>
 			<T.MeshPhysicalMaterial metalness={1} color="#00613F" />
 		</T.Mesh>
-	{/await}
 {:else if !isGltf}
 	{#await loader}
 		<T.Mesh rotation.y={rotation}>

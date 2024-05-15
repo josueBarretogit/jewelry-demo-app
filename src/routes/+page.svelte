@@ -5,7 +5,7 @@
 	import { Button, Modal } from 'flowbite-svelte';
 	let defaultModal = false;
 
-	const filepath = `/api/models/?modelName=gabrielavitrina.glb`;
+	const filepath = `/api/models/?modelName=saraafter.stl`;
 	const lightPosition = {
 		x: 1,
 		y: 1,

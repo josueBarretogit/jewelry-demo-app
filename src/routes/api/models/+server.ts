@@ -2,6 +2,10 @@ import { PRIVATE_API_TOKEN, PRIVATE_URL_API } from "$env/static/private";
 import type { RequestHandler } from "@sveltejs/kit";
 export const GET: RequestHandler = async ({ url }) => {
 
+  if (url.hostname != "localhost") {
+    return new Response("unauthorized")
+  }
+
   let req : RequestInit  = {
     headers : {
       Authorization : `Bearer ${PRIVATE_API_TOKEN}`,

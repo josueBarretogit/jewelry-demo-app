@@ -1,37 +1,37 @@
 <script lang="ts">
 	import Canvas3D from '$lib/components/Canvas3D.svelte';
 	import { Gallery } from 'flowbite-svelte';
-	import { Modal, Button } from 'flowbite-svelte';
+	import { Modal, Button, Tabs, TabItem } from 'flowbite-svelte';
 
 	const images = [
 		{
 			alt: 'erbology',
-			src: '/images/gabriela.png',
-			name: 'gabrielavitrina.glb'
+			src: 'camila.png',
+			name: 'camilaafter.stl'
 		},
 		{
 			alt: 'erbology',
-			src: '/images/adri.png',
-			name: 'adri6gr.glb'
+			src: 'jfpd.png',
+			name: 'jfpdstl.stl'
 		},
 		{
 			alt: 'shoes',
-			src: '/images/ana.png',
-			name: 'ana enviar.glb'
+			src: 'luisa.png',
+			name: 'luisaafter.stl'
 		},
 		{
-			alt: 'small bag',
-			src: '/images/pantera.png',
-			name: 'pantera.glb'
-		},
-		{
-			alt: 'plants',
-			src: '/images/sandra.png',
-			name: 'sandra6gr.glb'
+			alt: 'a ring',
+			src: 'sara.png',
+			name: 'saraafter.stl'
 		},
 		{
 			alt: 'plants',
-			src: '/images/sandra.png',
+			src: 'saracorazon.png',
+			name: 'saracorazonafter.stl'
+		},
+		{
+			alt: 'plants',
+			src: 'david.png',
 			name: 'pruebapequeno2.stl'
 		}
 	];
@@ -41,21 +41,44 @@
 	let modaltitle = '';
 </script>
 
-<Gallery items={images} class="grid-cols-2 gap-4 p-2 md:grid-cols-3" let:item>
-	<div>
-		<button
-			on:click={() => {
-				showmodal = true;
-
-				stlToOpen = `api/models/?modelName=${item.name}`;
-
-				modaltitle = item.name.replace('.stl', '');
-			}}
-		>
-			<img src={item.src} alt={item.alt} />
-		</button>
-	</div>
-</Gallery>
+<div class="">
+	<Tabs tabStyle="full">
+		<TabItem open title="Anillos de nombre">
+			<div class="flex justify-center">
+				<Gallery items={images} class="grid-cols-2 gap-3 p-2 md:grid-cols-3" let:item>
+					<div>
+						<button
+							on:click={() => {
+								showmodal = true;
+								stlToOpen = `api/models/?modelName=${item.name}`;
+								modaltitle = item.name.replace('.stl', '');
+							}}
+						>
+							<img src={`/images/${item.src}`} alt={item.alt} />
+						</button>
+					</div>
+				</Gallery>
+			</div>
+		</TabItem>
+		<TabItem title="Coronas">
+			<div class="flex justify-center">
+				<Gallery items={images} class="grid-cols-2 gap-3 p-2 md:grid-cols-3" let:item>
+					<div>
+						<button
+							on:click={() => {
+								showmodal = true;
+								stlToOpen = `api/models/?modelName=${item.name}`;
+								modaltitle = item.name.replace('.stl', '');
+							}}
+						>
+							<img src={`/images/${item.src}`} alt={item.alt} />
+						</button>
+					</div>
+				</Gallery>
+			</div>
+		</TabItem>
+	</Tabs>
+</div>
 
 <Modal title={modaltitle} size="lg" bind:open={showmodal}>
 	<div class=" modelContainer">
