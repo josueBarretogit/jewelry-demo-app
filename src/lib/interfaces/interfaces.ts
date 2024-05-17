@@ -9,6 +9,7 @@ export interface CatalogData {
 }
 
 export interface Catalog {
-	RingNames: CatalogData;
-	Manoplas: CatalogData;
+	ringNames: CatalogData;
+	manoplas: CatalogData;
+	dijes: CatalogData;
 }

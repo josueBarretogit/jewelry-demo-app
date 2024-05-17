@@ -35,7 +35,7 @@
 		>
 			<TabItem open title="Anillos de nombre">
 				<Gallery
-					items={catalog.RingNames.catalog}
+					items={catalog.ringNames.catalog}
 					class="grid-cols-2 gap-3 p-2 md:grid-cols-3"
 					let:item
 				>
@@ -48,7 +48,20 @@
 			</TabItem>
 			<TabItem title="Manoplas">
 				<Gallery
-					items={catalog.Manoplas.catalog}
+					items={catalog.manoplas.catalog}
+					class="grid-cols-2 gap-3 p-2 md:grid-cols-3"
+					let:item
+				>
+					<div>
+						<button on:click={openModal(item)}>
+							<img src={`/images/${item.src}`} alt={item.alt} />
+						</button>
+					</div>
+				</Gallery>
+			</TabItem>
+			<TabItem title="Dijes">
+				<Gallery
+					items={catalog.dijes.catalog}
 					class="grid-cols-2 gap-3 p-2 md:grid-cols-3"
 					let:item
 				>

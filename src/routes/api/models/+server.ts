@@ -3,13 +3,6 @@ import type { RequestHandler } from "@sveltejs/kit";
 export const GET: RequestHandler = async (event) => {
 
 
-  console.log(event.getClientAddress())
-
-
-  if (event.url.origin != "https://localhost:5173") {
-    return new Response("unauthorized")
-  }
-
   let req : RequestInit  = {
     headers : {
       Authorization : `Bearer ${PRIVATE_API_TOKEN}`,
