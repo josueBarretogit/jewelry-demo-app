@@ -37,33 +37,33 @@
     "catalog": [
       {
         "alt": "erbology",
-        "src": "camila.png",
-        "name": "camilaafter.stl"
+        "src": "carlosmanopla.png",
+        "name": "carlosmanopla.stl"
       },
       {
         "alt": "erbology",
-        "src": "jfpd.png",
-        "name": "jfpdstl.stl"
+        "src": "juandavidmanopla.png",
+        "name": "juandavidmanopla.stl"
       },
       {
         "alt": "shoes",
-        "src": "luisa.png",
-        "name": "luisaafter.stl"
+        "src": "mmanopla.png",
+        "name": "mmanopla.stl"
       },
       {
         "alt": "a ring",
-        "src": "sara.png",
-        "name": "saraafter.stl"
+        "src": "pablomanopla.png",
+        "name": "pablomanopla.stl"
       },
       {
         "alt": "plants",
-        "src": "saracorazon.png",
-        "name": "saracorazonafter.stl"
+        "src": "alvarob.png",
+        "name": "alvarobmanopla.stl"
       },
       {
         "alt": "plants",
-        "src": "david.png",
-        "name": "pruebapequeno2.stl"
+        "src": "giovanny.png",
+        "name": "giovannymanopla.stl"
       }
     ]
   }

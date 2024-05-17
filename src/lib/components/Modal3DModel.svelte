@@ -40,36 +40,18 @@
 	<OrbitControls autoRotate enableZoom={true} autoRotateSpeed={1.2} />
 </T.PerspectiveCamera>
 
-{#if !$loader && isGltf}
-		<T.Mesh rotation.y={rotation}>
-			<T.BoxGeometry />
-			<T.MeshBasicMaterial color="blue" />
-		</T.Mesh>
-{:else if $loader && isGltf}
-   <!-- else if content here -->
-		<T.Mesh
-			geometry={$loader.nodes.camilareduced.geometry.center()}
-			scale={[1.5, 1.5, 1.5]}
-			position={point}
-		>
-			<T.MeshPhysicalMaterial metalness={1} color="#00613F" />
-		</T.Mesh>
-
-
-{:else if !isGltf}
-	{#await loader}
-		<T.Mesh rotation.y={rotation}>
-			<T.BoxGeometry />
-			<T.MeshBasicMaterial color="blue" />
-		</T.Mesh>
-	{:then geometry}
-		<T.Mesh geometry={geometry.center()} scale={[1.5, 1.5, 1.5]} position={point}>
-			<T.MeshPhysicalMaterial metalness={0.5} clearcoat={1.0} color="#00613F" />
-		</T.Mesh>
-	{:catch e}
-		<T.Mesh rotation.y={rotation}>
-			<T.BoxGeometry />
-			<T.MeshBasicMaterial color="blue" />
-		</T.Mesh>
-	{/await}
-{/if}
+{#await loader}
+	<T.Mesh rotation.y={rotation}>
+		<T.BoxGeometry />
+		<T.MeshBasicMaterial color="blue" />
+	</T.Mesh>
+{:then geometry}
+	<T.Mesh geometry={geometry.center()} scale={[1.5, 1.5, 1.5]} position={point}>
+		<T.MeshPhysicalMaterial metalness={0.5} clearcoat={1.0} color="#00613F" />
+	</T.Mesh>
+{:catch e}
+	<T.Mesh rotation.y={rotation}>
+		<T.BoxGeometry />
+		<T.MeshBasicMaterial color="blue" />
+	</T.Mesh>
+{/await}

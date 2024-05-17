@@ -1,9 +1,12 @@
 import { PRIVATE_API_TOKEN, PRIVATE_URL_API } from "$env/static/private"; 
 import type { RequestHandler } from "@sveltejs/kit";
-export const GET: RequestHandler = async ({ url }) => {
+export const GET: RequestHandler = async (event) => {
 
 
-  if (url.origin != "https://localhost:5173") {
+  console.log(event.getClientAddress())
+
+
+  if (event.url.origin != "https://localhost:5173") {
     return new Response("unauthorized")
   }
 
@@ -17,7 +20,7 @@ export const GET: RequestHandler = async ({ url }) => {
     }
   } 
 
-  const modelName = url.searchParams.get("modelName");
+  const modelName = event.url.searchParams.get("modelName");
   
 
   const modelData = await fetch(`${PRIVATE_URL_API}/assets/${modelName}`, req);
@@ -25,10 +28,5 @@ export const GET: RequestHandler = async ({ url }) => {
 
   const data = await modelData.blob()
   
-  return new Response(data,{
-    headers : {
-      'Access-Control-Allow-Origin':  "https://localhost:5173"
-
-    }
-  })
+  return new Response(data)
 }
