@@ -3,7 +3,7 @@ import type { RequestHandler } from "@sveltejs/kit";
 export const GET: RequestHandler = async (event) => {
 
 
-  if (event.url.origin != "https://jewelry-demo-app.vercel.app") {
+  if (event.url.origin != "https://localhost:5173") {
     return new Response("unauthorized", { status : 401 })
   }
 

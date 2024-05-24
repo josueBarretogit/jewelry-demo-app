@@ -5,11 +5,11 @@ export interface CatalogItems {
 }
 
 export interface CatalogData {
+  tabTitle : string;
 	catalog: CatalogItems[];
 }
 
-export interface Catalog {
-	ringNames: CatalogData;
-	manoplas: CatalogData;
-	dijes: CatalogData;
+
+export interface ContentData {
+  content : CatalogData[]
 }

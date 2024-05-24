@@ -1,21 +1,21 @@
 <script lang="ts">
 	import Canvas3D from '$lib/components/Canvas3D.svelte';
-	import { type Catalog } from '$lib/interfaces/interfaces';
-	import { Gallery, Spinner, type ImgType } from 'flowbite-svelte';
+	import type { CatalogItems, ContentData } from '$lib/interfaces/interfaces';
+	import { Gallery, Spinner,  } from 'flowbite-svelte';
 	import { Modal, Button, Tabs, TabItem } from 'flowbite-svelte';
 
-	async function getCatalogs(): Promise<Catalog> {
+	async function getCatalogs(): Promise<ContentData> {
 		const reponse = await fetch('/data/content.json');
 		return reponse.json();
 	}
 
-	function openModal(item: ImgType) {
+	function openModal(item: CatalogItems) : undefined {
 		showmodal = true;
 		stlToOpen = `api/models/?modelName=${item.name}`;
 		modaltitle = item.name.replace('.stl', '');
 	}
 
-	const catalogs: Promise<Catalog> = getCatalogs();
+	const catalogs: Promise<ContentData> = getCatalogs();
 
 	let showmodal = false;
 	let stlToOpen = '';
@@ -26,59 +26,37 @@
 	<div class="flex justify-center">
 		<Spinner />
 	</div>
-{:then catalog}
+{:then catalogData}
 	<div class="">
 		<Tabs
 			tabStyle="full"
 			contentClass="flex justify-center"
 			defaultClass="flex justify-center text-lg"
 		>
-			<TabItem open title="Anillos de nombre">
-				<Gallery
-					items={catalog.ringNames.catalog}
-					class="grid-cols-2 gap-3 p-2 md:grid-cols-3"
-					let:item
-				>
-					<div>
-						<button on:click={openModal(item)}>
-							<img src={`/images/${item.src}`} alt={item.alt} />
-						</button>
-					</div>
-				</Gallery>
-			</TabItem>
-			<TabItem title="Manoplas">
-				<Gallery
-					items={catalog.manoplas.catalog}
-					class="grid-cols-2 gap-3 p-2 md:grid-cols-3"
-					let:item
-				>
-					<div>
-						<button on:click={openModal(item)}>
-							<img src={`/images/${item.src}`} alt={item.alt} />
-						</button>
-					</div>
-				</Gallery>
-			</TabItem>
-			<TabItem title="Dijes">
-				<Gallery
-					items={catalog.dijes.catalog}
-					class="grid-cols-2 gap-3 p-2 md:grid-cols-3"
-					let:item
-				>
-					<div>
-						<button on:click={openModal(item)}>
-							<img src={`/images/${item.src}`} alt={item.alt} />
-						</button>
-					</div>
-				</Gallery>
-			</TabItem>
+			{#each catalogData.content as catalog}
+				<TabItem open title={catalog.tabTitle}>
+					<Gallery
+						items={catalog.catalog}
+						class="grid-cols-2 gap-3 p-2 md:grid-cols-3"
+						let:item
+					>
+						<div>
+							<button on:click={openModal(item)}>
+								<img src={`/images/${item.src}`} alt={item.alt} />
+							</button>
+						</div>
+					</Gallery>
+				</TabItem>
+			{/each}
 		</Tabs>
 	</div>
 {:catch error}
 	<div class="flex justify-center">
+    {console.error(error)}
 		<p>an error ocurred</p>
 	</div>
 {/await}
+
 
 <Modal title={modaltitle} size="lg" bind:open={showmodal}>
 	<div class=" modelContainer">

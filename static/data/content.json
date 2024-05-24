@@ -1,104 +1,109 @@
 {
-  "ringNames": {
-    "catalog": [
-      {
-        "alt": "erbology",
-        "src": "camila.png",
-        "name": "camilaafter.stl"
-      },
-      {
-        "alt": "erbology",
-        "src": "jfpd.png",
-        "name": "jfpdstl.stl"
-      },
-      {
-        "alt": "shoes",
-        "src": "luisa.png",
-        "name": "luisaafter.stl"
-      },
-      {
-        "alt": "a ring",
-        "src": "sara.png",
-        "name": "saraafter.stl"
-      },
-      {
-        "alt": "plants",
-        "src": "saracorazon.png",
-        "name": "saracorazonafter.stl"
-      },
-      {
-        "alt": "plants",
-        "src": "david.png",
-        "name": "pruebapequeno2.stl"
-      }
-    ]
-  },
-  "manoplas": {
-    "catalog": [
-      {
-        "alt": "erbology",
-        "src": "carlosmanopla.png",
-        "name": "carlosmanopla.stl"
-      },
-      {
-        "alt": "erbology",
-        "src": "juandavidmanopla.png",
-        "name": "juandavidmanopla.stl"
-      },
-      {
-        "alt": "shoes",
-        "src": "mmanopla.png",
-        "name": "mmanopla.stl"
-      },
-      {
-        "alt": "a ring",
-        "src": "pablomanopla.png",
-        "name": "pablomanopla.stl"
-      },
-      {
-        "alt": "plants",
-        "src": "alvarob.png",
-        "name": "alvarobmanopla.stl"
-      },
-      {
-        "alt": "plants",
-        "src": "giovanny.png",
-        "name": "giovannymanopla.stl"
-      }
-    ]
-  },
-  "dijes": {
-    "catalog": [
-      {
-        "alt": "erbology",
-        "src": "anabeldije.png",
-        "name": "anabeldije.stl"
-      },
-      {
-        "alt": "erbology",
-        "src": "juandavidmanopla.png",
-        "name": "juandavidmanopla.stl"
-      },
-      {
-        "alt": "shoes",
-        "src": "mmanopla.png",
-        "name": "mmanopla.stl"
-      },
-      {
-        "alt": "a ring",
-        "src": "pablomanopla.png",
-        "name": "pablomanopla.stl"
-      },
-      {
-        "alt": "plants",
-        "src": "alvarob.png",
-        "name": "alvarobmanopla.stl"
-      },
-      {
-        "alt": "plants",
-        "src": "giovanny.png",
-        "name": "giovannymanopla.stl"
-      }
-    ]
-  }
+  "content": [
+    {
+      "tabTitle": "Anillos de nombre",
+      "catalog": [
+        {
+          "alt": "erbology",
+          "src": "camila.png",
+          "name": "camilaafter.stl"
+        },
+        {
+          "alt": "erbology",
+          "src": "jfpd.png",
+          "name": "jfpdstl.stl"
+        },
+        {
+          "alt": "shoes",
+          "src": "luisa.png",
+          "name": "luisaafter.stl"
+        },
+        {
+          "alt": "a ring",
+          "src": "sara.png",
+          "name": "saraafter.stl"
+        },
+        {
+          "alt": "plants",
+          "src": "saracorazon.png",
+          "name": "saracorazonafter.stl"
+        },
+        {
+          "alt": "plants",
+          "src": "david.png",
+          "name": "pruebapequeno2.stl"
+        }
+      ]
+    },
+    {
+      "tabTitle": "Manoplas",
+      "catalog": [
+        {
+          "alt": "erbology",
+          "src": "carlosmanopla.png",
+          "name": "carlosmanopla.stl"
+        },
+        {
+          "alt": "erbology",
+          "src": "juandavidmanopla.png",
+          "name": "juandavidmanopla.stl"
+        },
+        {
+          "alt": "shoes",
+          "src": "mmanopla.png",
+          "name": "mmanopla.stl"
+        },
+        {
+          "alt": "a ring",
+          "src": "pablomanopla.png",
+          "name": "pablomanopla.stl"
+        },
+        {
+          "alt": "plants",
+          "src": "alvarob.png",
+          "name": "alvarobmanopla.stl"
+        },
+        {
+          "alt": "plants",
+          "src": "giovanny.png",
+          "name": "giovannymanopla.stl"
+        }
+      ]
+    },
+    {
+      "tabTitle": "Dijes",
+      "catalog": [
+        {
+          "alt": "erbology",
+          "src": "anabeldije.png",
+          "name": "anabeldije.stl"
+        },
+        {
+          "alt": "erbology",
+          "src": "juandavidmanopla.png",
+          "name": "juandavidmanopla.stl"
+        },
+        {
+          "alt": "shoes",
+          "src": "mmanopla.png",
+          "name": "mmanopla.stl"
+        },
+        {
+          "alt": "a ring",
+          "src": "pablomanopla.png",
+          "name": "pablomanopla.stl"
+        },
+        {
+          "alt": "plants",
+          "src": "alvarob.png",
+          "name": "alvarobmanopla.stl"
+        },
+        {
+          "alt": "plants",
+          "src": "giovanny.png",
+          "name": "giovannymanopla.stl"
+        }
+      ]
+    }
+  ]
 }
