@@ -1,6 +1,6 @@
 <script lang="ts">
 	import Modal3DModel from '$lib/components/Modal3DModel.svelte';
-	import SceneMainPage from '$lib/components/SceneMainPage.svelte.svelte';
+	import SceneMainPage from '$lib/components/SceneMainPage.svelte';
 	import { Canvas } from '@threlte/core';
 	import { Button, Modal } from 'flowbite-svelte';
 	let defaultModal = false;
@@ -13,7 +13,7 @@
 	};
 </script>
 
-<div class=" bg-grey flex w-full justify-center" style="height: 50vh;">
+<div class=" bg-grey flex w-full justify-center bg-black" style="height: 70vh;">
 	<Canvas>
 		<SceneMainPage />
 	</Canvas>
