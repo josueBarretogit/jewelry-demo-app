@@ -3,6 +3,7 @@
 	import SceneMainPage from '$lib/components/SceneMainPage.svelte';
 	import { Canvas } from '@threlte/core';
 	import { Button, Modal } from 'flowbite-svelte';
+	import { OrbitControls } from 'three/examples/jsm/Addons.js';
 	let defaultModal = false;
 
 	const filepath = `/api/models/?modelName=saraafter.stl`;
@@ -17,10 +18,16 @@
 	<Canvas>
 		<SceneMainPage />
 	</Canvas>
+	
 </div>
 
-<div class="main-content">
-	<div class="tabs"></div>
+<div class="sections">
+
+<div>
+	
+</div>
+
+
 </div>
 
 <style>

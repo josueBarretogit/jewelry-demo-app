@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { Canvas, T, useTask } from '@threlte/core';
+	import { Canvas, T, useTask, } from '@threlte/core';
 	import { STLLoader } from 'three/addons/loaders/STLLoader';
 	import { useLoader } from '@threlte/core';
 	import {
@@ -10,18 +10,8 @@
 		interactivity,
 		useGltf
 	} from '@threlte/extras';
-	import { GridHelper } from 'three';
-
-	interface RingSettings {
-		position: {
-			x: number;
-			y: number;
-			z: number;
-		};
-		scale: number;
-	}
-
-	interactivity();
+	import type { RingSettings } from '$lib/interfaces/interfaces';
+  
 	const lightPosition = {
 		x: 1,
 		y: 29,
@@ -37,6 +27,8 @@
 		}
 	};
 
+  
+
 	const ringSettings2: RingSettings = {
 		scale: 0.3,
 		position: {
@@ -46,26 +38,44 @@
 		}
 	};
 
-	const loader = useLoader(STLLoader).load(`/api/models/?modelName=saraafter.stl`);
+	const loader = useLoader(STLLoader).load(`/api/models/?modelName=alvarobmanopla.stl`);
 	const loader2 = useLoader(STLLoader).load(`/api/models/?modelName=luisaafter.stl`);
 
 	let rotation = 0;
-	useTask((delta) => {});
+	//useTask((delta) => {});
+	
 </script>
 
-<T.AmbientLight color="white" intensity={0.9} />
+<T.AmbientLight intensity={0.9} />
 
-<T.PerspectiveCamera makeDefault position={[-10, 10, 40]} fov={15} on:create={({ ref }) => {}}>
+<T.PerspectiveCamera makeDefault position={[-10, 10, 40]} fov={15}>
 	<OrbitControls enableZoom={true} autoRotateSpeed={1.2} />
 </T.PerspectiveCamera>
 
 <T.DirectionalLight
 	intensity={4}
 	position={[lightPosition.x, lightPosition.y, lightPosition.z]}
-	castShadow
-/>
+	scale={30}
+	castShadow={true}
+>
 
-<T.DirectionalLight intensity={0.4} position={[lightPosition.x, 0, lightPosition.z]} castShadow />
+	<!-- add the `zoom` parameter -->
+	<!-- set to same value as ortho cam -->
+	<T.OrthographicCamera
+		attach="shadow.camera"
+		left={-10}
+		right={10}
+		top={10}
+		bottom={-10}
+		near={1}
+		far={500}
+		zoom={500}
+	/>
+	<!-- 2048 resolution is now super sharp -->
+	<!-- decrease zoom value for softer shadows -->
+	<T.Vector2 attach="shadow.mapSize" args={[2048, 2048]} />
+
+</T.DirectionalLight>
 
 <Float floatIntensity={10} rotationSpeed={10} speed={4}>
 	{#await loader}
@@ -111,7 +121,8 @@
 	{/await}
 </Float>
 
+
 <T.Mesh rotation.x={-90 * (Math.PI / 180)} receiveShadow>
-	<T.CircleGeometry args={[20, 72]} />
-	<T.MeshStandardMaterial color={'white'} />
+	<T.CircleGeometry args={[20, 100]}  />
+	<T.MeshStandardMaterial color={'white'} args={[100, 100]}  />
 </T.Mesh>

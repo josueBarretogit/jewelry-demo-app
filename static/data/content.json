@@ -1,6 +1,41 @@
 {
   "content": [
     {
+      "tabTitle": "Coronas",
+      "catalog": [
+        {
+          "alt": "erbology",
+          "src": "camila.png",
+          "name": "camilaafter.stl"
+        },
+        {
+          "alt": "erbology",
+          "src": "jfpd.png",
+          "name": "jfpdstl.stl"
+        },
+        {
+          "alt": "shoes",
+          "src": "luisa.png",
+          "name": "luisaafter.stl"
+        },
+        {
+          "alt": "a ring",
+          "src": "sara.png",
+          "name": "saraafter.stl"
+        },
+        {
+          "alt": "plants",
+          "src": "saracorazon.png",
+          "name": "saracorazonafter.stl"
+        },
+        {
+          "alt": "plants",
+          "src": "david.png",
+          "name": "pruebapequeno2.stl"
+        }
+      ]
+    },
+    {
       "tabTitle": "Anillos de nombre",
       "catalog": [
         {

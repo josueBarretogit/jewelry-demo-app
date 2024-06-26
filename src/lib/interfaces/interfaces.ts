@@ -1,15 +1,25 @@
 export interface CatalogItems {
-	alt: string;
-	src: string;
-	name: string;
+  alt: string;
+  src: string;
+  name: string;
 }
 
 export interface CatalogData {
-  tabTitle : string;
-	catalog: CatalogItems[];
+  tabTitle: string;
+  catalog: CatalogItems[];
 }
 
 
 export interface ContentData {
-  content : CatalogData[]
+  content: CatalogData[]
+}
+
+
+export interface RingSettings {
+  position: {
+    x: number;
+    y: number;
+    z: number;
+  };
+  scale: number;
 }
