@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { Canvas, T, useTask, } from '@threlte/core';
+	import { Canvas, T, useTask, type AsyncWritable } from '@threlte/core';
 	import { STLLoader } from 'three/addons/loaders/STLLoader';
 	import { useLoader } from '@threlte/core';
 	import {
@@ -11,44 +11,53 @@
 		useGltf
 	} from '@threlte/extras';
 	import type { RingSettings } from '$lib/interfaces/interfaces';
-  
+	import { Texture, TextureLoader } from 'three';
+  import * as THREE from 'three'
+
 	const lightPosition = {
 		x: 1,
-		y: 29,
-		z: 1
+		y: 30,
+		z: 19
 	};
 
-	const ringSettings1: RingSettings = {
-		scale: 2.4,
+	const ringSettings1: any = {
+		scale: 1.4,
 		position: {
-			y: 5,
+			y: 7,
 			x: 10,
 			z: 0
 		}
 	};
 
-  
-
 	const ringSettings2: RingSettings = {
-		scale: 0.3,
+		scale: 1.5,
 		position: {
-			y: 5,
+			y: 7,
 			x: 0,
 			z: 0
 		}
 	};
 
-	const loader = useLoader(STLLoader).load(`/api/models/?modelName=alvarobmanopla.stl`);
-	const loader2 = useLoader(STLLoader).load(`/api/models/?modelName=luisaafter.stl`);
+	const ringColor = '#FFD700';
+
+	const loader = useLoader(STLLoader).load(`/api/models/?modelName=corona1.stl`);
+	const loader2 = useLoader(STLLoader).load(`/api/models/?modelName=corona2.stl`);
+
+	const texture = useLoader(TextureLoader).load('/static/textures/metallic.jpg');
+
+	function getTexture(texture: Texture): Texture {
+
+    texture.colorSpace = THREE.SRGBColorSpace;
+
+		return texture;
+	}
 
 	let rotation = 0;
-	//useTask((delta) => {});
-	
 </script>
 
-<T.AmbientLight intensity={0.9} />
+<T.AmbientLight intensity={2} />
 
-<T.PerspectiveCamera makeDefault position={[-10, 10, 40]} fov={15}>
+<T.PerspectiveCamera makeDefault position={[10, 40, 30]} fov={30}>
 	<OrbitControls enableZoom={true} autoRotateSpeed={1.2} />
 </T.PerspectiveCamera>
 
@@ -58,40 +67,36 @@
 	scale={30}
 	castShadow={true}
 >
-
-	<!-- add the `zoom` parameter -->
-	<!-- set to same value as ortho cam -->
 	<T.OrthographicCamera
 		attach="shadow.camera"
 		left={-10}
 		right={10}
 		top={10}
-		bottom={-10}
-		near={1}
-		far={500}
-		zoom={500}
+		near={10}
+		far={100}
+		zoom={700}
 	/>
-	<!-- 2048 resolution is now super sharp -->
-	<!-- decrease zoom value for softer shadows -->
 	<T.Vector2 attach="shadow.mapSize" args={[2048, 2048]} />
-
 </T.DirectionalLight>
 
-<Float floatIntensity={10} rotationSpeed={10} speed={4}>
+<Float floatIntensity={9} rotationSpeed={10} speed={4}>
 	{#await loader}
 		<T.Mesh rotation.y={rotation}>
 			<T.BoxGeometry />
 			<T.MeshBasicMaterial color="blue" />
 		</T.Mesh>
 	{:then geometry}
-		<T.Mesh
-			geometry={geometry.center()}
-			scale={[ringSettings1.scale, ringSettings1.scale, ringSettings1.scale]}
-			position={[ringSettings1.position.x, ringSettings1.position.y, ringSettings1.position.z]}
-			castShadow
-		>
-			<T.MeshPhysicalMaterial metalness={0.5} clearcoat={1.0} color="#00613F" />
-		</T.Mesh>
+		{#await texture then tex}
+			<T.Mesh
+				rotation.x={-90 * (Math.PI / 180)}
+				geometry={geometry.center()}
+				scale={[ringSettings1.scale, ringSettings1.scale, ringSettings1.scale]}
+				position={[ringSettings1.position.x, ringSettings1.position.y, ringSettings1.position.z]}
+				castShadow
+			>
+				<T.MeshPhysicalMaterial map={getTexture(tex)}  metalness={0.5} clearcoat={1.0} />
+			</T.Mesh>
+		{/await}
 	{:catch e}
 		<T.Mesh rotation.y={rotation}>
 			<T.BoxGeometry />
@@ -106,12 +111,13 @@
 		</T.Mesh>
 	{:then geometry}
 		<T.Mesh
+			rotation.x={-90 * (Math.PI / 180)}
 			geometry={geometry.center()}
 			scale={[ringSettings2.scale, ringSettings2.scale, ringSettings2.scale]}
 			position={[ringSettings2.position.x, ringSettings2.position.y, ringSettings2.position.z]}
 			castShadow
 		>
-			<T.MeshPhysicalMaterial metalness={0.5} clearcoat={1.0} color="#00613F" />
+			<T.MeshPhysicalMaterial metalness={0.5} clearcoat={1.0} color={ringColor} />
 		</T.Mesh>
 	{:catch e}
 		<T.Mesh rotation.y={rotation}>
@@ -121,8 +127,4 @@
 	{/await}
 </Float>
 
-
-<T.Mesh rotation.x={-90 * (Math.PI / 180)} receiveShadow>
-	<T.CircleGeometry args={[20, 100]}  />
-	<T.MeshStandardMaterial color={'white'} args={[100, 100]}  />
-</T.Mesh>
+<Grid gridSize={[3, 4]} infiniteGrid />

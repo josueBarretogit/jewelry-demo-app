@@ -14,7 +14,7 @@
 	};
 </script>
 
-<div class=" bg-grey flex w-full justify-center bg-black" style="height: 70vh;">
+<div class=" bg-grey flex w-full justify-center bg-black" style="height: 80vh;">
 	<Canvas>
 		<SceneMainPage />
 	</Canvas>
